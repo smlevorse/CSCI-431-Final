@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Convolution2D, MaxPool2D
+from keras.layers import Convolution2D, MaxPool2D, Flatten, Activation, Dense
 
 
 from helper import getBinaryfer13Data
@@ -40,8 +40,18 @@ def constructModel():
     model.add(MaxPool2D(pool_size = (2, 2)))
     # Should result in 12x12x1 output
 
+    model.add(Flatten())
+    model.add(Dense(6))
+    model.add(Activation('relu'))
+    model.compile(loss = 'categorical_crossentropy', optimizer = 'sgd', metrics = ['accuracy'])
+
+    return model
+
 def main():
     tf.logging.set_verbosity(tf.logging.INFO)
     imagesT, imagesV, labelsT, labelsV = getBinaryfer13Data('fer2013.csv')
 
+    model = constructModel()
 
+    model.fit(imagesT[0:100], labelsT[0:100])
+    model.save_weights('first_try.h5')
