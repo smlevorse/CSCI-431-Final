@@ -4,7 +4,7 @@ from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPool2D, Flatten, Activation, Dense
 
 
-from helper import getBinaryfer13Data
+from helper import getBinaryfer13Data, emotionToMatrix
 
 def constructModel():
     model = Sequential()
@@ -18,13 +18,7 @@ def constructModel():
         dilation_rate = (1, 1),
         activation = 'relu',
         use_bias = True,
-        kernel_initializer = 'random_uniform',
-        bias_initializer = 'zeros',
-        kernel_regulizer = None,
-        bias_regularizer = None,
-        activity_regularizer = None,
-        kernel_constraint = None,
-        bias_constraint = None
+        kernel_initializer = 'random_uniform'
     ))
     model.add(MaxPool2D(pool_size = (2, 2)))
     # Should result in 24x24x1 output
@@ -41,17 +35,30 @@ def constructModel():
     # Should result in 12x12x1 output
 
     model.add(Flatten())
-    model.add(Dense(6))
+    model.add(Dense(7))
     model.add(Activation('relu'))
     model.compile(loss = 'categorical_crossentropy', optimizer = 'sgd', metrics = ['accuracy'])
 
     return model
 
 def main():
-    tf.logging.set_verbosity(tf.logging.INFO)
+    print('loading images')
     imagesT, imagesV, labelsT, labelsV = getBinaryfer13Data('fer2013.csv')
 
-    model = constructModel()
+    print(imagesT.shape)
+    print(labelsT.shape)
 
-    model.fit(imagesT[0:100], labelsT[0:100])
-    model.save_weights('first_try.h5')
+    print('done loading')
+    print('constructing model')
+    model = constructModel()
+    print('model constructed')
+    print('training model')
+    model.fit(imagesT, labelsT, epochs = 50, validation_data = (imagesV, labelsV))
+    print('model trained')
+    print('saving weights')
+    model.save_weights('weights.h5')
+    print('saved!')
+
+
+if __name__ == "__main__":
+    main()
