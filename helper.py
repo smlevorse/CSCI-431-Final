@@ -2,7 +2,10 @@ import numpy as np
 import cv2
 from sklearn.preprocessing import normalize
 
-def getBinaryfer13Data(filename):
+import pickle
+import os
+
+def getfer13Data(filename):
     labelsTrain = []
     labelsPubVal = []
     labelsPriVal = []
@@ -85,3 +88,45 @@ def normalizeImage(I):
             xp = np.clip((xp * 127 / float(2.0)) + 127, 0, 255)  #clip value to byte sized
             normalized[j, i] = xp
     return normalized
+
+'''
+Save time by not running the normalize function on each image each time we run the program
+'''
+def loadImages():
+    allFilesExist = True
+    allFilesExist = allFilesExist and os.path.exists('nomalizeTrainingImages') and os.path.exists('trainingLabels')
+    allFilesExist = allFilesExist and os.path.exists('normalizedPublicValidationImages') and os.path.exists('publicValidationLabels')
+    allFilesExist = allFilesExist and os.path.exists('normalizedPrivateValidationImages') and os.path.exists('privateValidationLabels')
+
+    if allFilesExist:
+        print("Normalized images found, unpickling...")
+        with open('nomalizeTrainingImages', 'rb') as fi:
+            imagesT = pickle.load(fi)
+        with open('trainingLabels', 'rb') as fi:
+            labelsT = pickle.load(fi)
+        with open('normalizedPublicValidationImages', 'rb') as fi:
+            imagesPubV = pickle.load(fi)
+        with open('publicValidationLabels', 'rb') as fi:
+            labelsPubV = pickle.load(fi)
+        with open('normalizedPrivateValidationImages', 'rb') as fi:
+            imagesPriV = pickle.load(fi)
+        with open('privateValidationLabels', 'rb') as fi:
+            labelsPriV = pickle.load(fi)
+    else:
+        print("No normalized images found, loading from CSV")
+        imagesT, imagesPubV, imagesPriV, labelsT, labelsPubV, labelsPriV = getfer13Data('fer2013.csv')
+        # Store normalized images in pickled files to save that ungodly normalizing time again
+        with open('nomalizeTrainingImages', 'wb') as fi:
+            pickle.dump(imagesT, fi)
+        with open('trainingLabels', 'wb') as fi:
+            pickle.dump(labelsT, fi)
+        with open('normalizedPublicValidationImages', 'wb') as fi:
+            pickle.dump(imagesPubV, fi)
+        with open('publicValidationLabels', 'wb') as fi:
+            pickle.dump(labelsPubV, fi)
+        with open('normalizedPrivateValidationImages', 'wb') as fi:
+            pickle.dump(imagesPriV, fi)
+        with open('privateValidationLabels', 'wb') as fi:
+            pickle.dump(labelsPriV, fi)
+
+    return imagesT, imagesPubV, imagesPriV , labelsT, labelsPubV, labelsPriV

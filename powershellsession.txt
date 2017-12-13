@@ -1,0 +1,54 @@
+PS C:\Users\Sean\Documents\CSCI-431\CSCI-431-Final> python .\homework4.py
+Using TensorFlow backend.
+loading images
+Normalized images found, unpickling...
+done loading
+constructing model
+model constructed
+training model
+Train on 28709 samples, validate on 3589 samples
+Epoch 1/20
+2017-12-12 17:13:12.141596: I C:\tf_jenkins\home\workspace\rel-win\M\windows\PY\36\tensorflow\core\platform\cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX AVX2
+28709/28709 [==============================] - 263s 9ms/step - loss: 1.7771 - acc: 0.2719 - val_loss: 1.6478 - val_acc: 0.3424
+Epoch 2/20
+28709/28709 [==============================] - 285s 10ms/step - loss: 1.5553 - acc: 0.3900 - val_loss: 1.4636 - val_acc: 0.4338
+Epoch 3/20
+28709/28709 [==============================] - 293s 10ms/step - loss: 1.4477 - acc: 0.4393 - val_loss: 1.5799 - val_acc: 0.4154
+Epoch 4/20
+28709/28709 [==============================] - 299s 10ms/step - loss: 1.3965 - acc: 0.4612 - val_loss: 1.4442 - val_acc: 0.4536
+Epoch 5/20
+28709/28709 [==============================] - 298s 10ms/step - loss: 1.3664 - acc: 0.4738 - val_loss: 1.3729 - val_acc: 0.4567
+Epoch 6/20
+28709/28709 [==============================] - 292s 10ms/step - loss: 1.3470 - acc: 0.4840 - val_loss: 1.3750 - val_acc: 0.4670
+Epoch 7/20
+28709/28709 [==============================] - 307s 11ms/step - loss: 1.3289 - acc: 0.4905 - val_loss: 1.4399 - val_acc: 0.4656
+Epoch 8/20
+28709/28709 [==============================] - 287s 10ms/step - loss: 1.3096 - acc: 0.4982 - val_loss: 1.3494 - val_acc: 0.4868
+Epoch 9/20
+28709/28709 [==============================] - 291s 10ms/step - loss: 1.3013 - acc: 0.5005 - val_loss: 1.3723 - val_acc: 0.4893
+Epoch 10/20
+28709/28709 [==============================] - 297s 10ms/step - loss: 1.2875 - acc: 0.5072 - val_loss: 1.3566 - val_acc: 0.4826
+Epoch 11/20
+28709/28709 [==============================] - 294s 10ms/step - loss: 1.2808 - acc: 0.5119 - val_loss: 1.4045 - val_acc: 0.4776
+Epoch 12/20
+28709/28709 [==============================] - 306s 11ms/step - loss: 1.2714 - acc: 0.5165 - val_loss: 1.3600 - val_acc: 0.4829
+Epoch 13/20
+28709/28709 [==============================] - 346s 12ms/step - loss: 1.2627 - acc: 0.5162 - val_loss: 1.3910 - val_acc: 0.4678
+Epoch 14/20
+28709/28709 [==============================] - 315s 11ms/step - loss: 1.2559 - acc: 0.5186 - val_loss: 1.3752 - val_acc: 0.4859
+Epoch 15/20
+28709/28709 [==============================] - 290s 10ms/step - loss: 1.2511 - acc: 0.5221 - val_loss: 1.4236 - val_acc: 0.4511
+Epoch 16/20
+28709/28709 [==============================] - 313s 11ms/step - loss: 1.2477 - acc: 0.5226 - val_loss: 1.3655 - val_acc: 0.4759
+Epoch 17/20
+28709/28709 [==============================] - 321s 11ms/step - loss: 1.2468 - acc: 0.5220 - val_loss: 1.3551 - val_acc: 0.4804
+Epoch 18/20
+28709/28709 [==============================] - 288s 10ms/step - loss: 1.2418 - acc: 0.5268 - val_loss: 1.3736 - val_acc: 0.4806
+Epoch 19/20
+28709/28709 [==============================] - 287s 10ms/step - loss: 1.2374 - acc: 0.5249 - val_loss: 1.4858 - val_acc: 0.4904
+Epoch 20/20
+28709/28709 [==============================] - 307s 11ms/step - loss: 1.2355 - acc: 0.5294 - val_loss: 1.5138 - val_acc: 0.4717
+model trained
+saving weights
+saved!
+PS C:\Users\Sean\Documents\CSCI-431\CSCI-431-Final>
